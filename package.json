@@ -2,7 +2,7 @@
   "name": "rest-api",
   "version": "1.0.0",
   "description": "Rest API",
-  "main": "app.mjs",
+  "main": "./app.mjs",
   "type": "module",
   "scripts": {
     "start": "node ./app.js",
