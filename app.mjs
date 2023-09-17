@@ -20,11 +20,7 @@ app.use(cors({
             'http://127.0.0.1:5500'
         ];
 
-        if (ACCEPTED_ORIGINS.includes(origin)) {
-            return callback(null, origin);
-        }
-
-        if (!origin) {
+        if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
             return callback(null, origin);
         }
     }
