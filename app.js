@@ -1,9 +1,13 @@
 import Express from 'express';
 import picocolors from 'picocolors';
-import movies from './movies.mjs';
 import crypto from 'node:crypto';
 import cors from 'cors';
-import { validateMovie, validatePartialMovie } from './schemas.mjs';
+import { validateMovie, validatePartialMovie } from './movie-schema.js';
+
+// Importar JSON en ESModules recomendado por ahora
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const movies = require('./movies.json');
 
 const PORT = process.env.PORT ?? 3000;
 const app = Express();
