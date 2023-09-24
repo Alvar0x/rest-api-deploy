@@ -1,42 +1,45 @@
-import Movie from '../models/movie.js';
 import { validateMovie, validatePartialMovie } from '../movie-schema.js';
 
 class MovieController {
-    static async create(request, response) {
+    constructor({ movieModel }) {
+        this.movieModel = movieModel;
+    }
+
+    create = async (request, response) => {
         const result = validateMovie(request.body);
         if (result.error) {
             return response.status(400).json({ code: 400, errors: result.error.issues });
         }
-        const newMovie = await Movie.create({ newMovie: result.data });
+        const newMovie = await this.movieModel.create({ newMovie: result.data });
         response.status(201).json(newMovie);
     }
 
-    static async getAll(request, response) {
+    getAll = async (request, response) => {
         const { genre } = request.query;
-        const movies = await Movie.getAll({ genre });
+        const movies = await this.movieModel.getAll({ genre });
         response.json(movies);
     }
 
-    static async getByID(request, response) {
+    getByID = async (request, response) => {
         const { id } = request.params;
-        const requestedMovie = await Movie.getByID({ id });
+        const requestedMovie = await this.movieModel.getByID({ id });
         if (requestedMovie) {
             return response.json(requestedMovie);
         }
         return response.status(404).json({ code: 404, message: 'Movie not found' });
     }
 
-    static async update(request, response) {
+    update = async (request, response) => {
         const { id } = request.params;
         const result = validatePartialMovie(request.body);
         if (result.error) return response.status(400).json({ code: 400, errors: result.error.issues });
-        const updatedMovie = await Movie.update({ id, updatedMovie: result.data });
+        const updatedMovie = await this.movieModel.update({ id, updatedMovie: result.data });
         response.status(201).json(updatedMovie);
     }
 
-    static async delete(request, response) {
+    delete = async (request, response) => {
         const { id } = request.params;
-        const result = await Movie.delete({ id });
+        const result = await this.movieModel.delete({ id });
         response.json(result);
     }
 }

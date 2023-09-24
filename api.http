@@ -5,7 +5,7 @@ GET http://localhost:3000
 GET http://localhost:3000/movies
 
 ### Recuperar una película por ID
-GET http://localhost:3000/movies/6a360a18-c645-4b47-9a7b-2a71babbf3e0
+GET http://localhost:3000/movies/ba1d8255-5a6c-11ee-aa72-b4b686d90384
 
 ### Recuperar todas las películas de un género
 GET http://localhost:3000/movies?genre=drama
@@ -15,26 +15,26 @@ POST http://localhost:3000/movies
 Content-Type: application/json
 
 {
-    "title": "My Own Movie",
-    "year": 2023,
-    "director": "Álvaro Navas",
-    "duration": 137,
-    "poster": "https://i.ebayimg.com/images/g/yokAAOSw8w1YARbm/s-l1200.jpg",
-    "genre": ["horror", "crime", "drama"],
-    "rate": 10.0
+    "title": "Jurassic Park",
+    "year": 1993,
+    "director": "Steven Spielberg",
+    "duration": 127,
+    "poster": "https://vice-press.com/cdn/shop/products/Jurassic-Park-Editions-poster-florey.jpg?v=1654518755&width=1024",
+    "genre": [],
+    "rate": 8.1
 }
 
 ### Actualizar sólo un atributo de una película
-PATCH http://localhost:3000/movies/6a360a18-c645-4b47-9a7b-2a71babbf3e0
+PATCH http://localhost:3000/movies/a3330fcb-5a82-11ee-aa72-b4b686d90384
 Content-Type: application/json
 
 {
-    "year": 2009,
-    "rate": 7.8
+    "year": 2010,
+    "rate": 8.8
 }
 
 ### Eliminar una película
-DELETE http://localhost:3000/movies/6a360a18-c645-4b47-9a7b-2a71babbf3e0
+DELETE http://localhost:3000/movies/da7c14a7-5adc-11ee-9c3e-b4b686d90384
 
 ### No encontrada
 GET http://localhost:3000/asdf
